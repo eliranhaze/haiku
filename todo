@@ -1,0 +1,27 @@
+utils:
+- download all pdfs from a page
+- auto pdf to txt
+- multiples pdf to txt
+- smart pdf to txt
+- download papers from journal website
+- simple website for haiku detection
+
+haiku:
+- fix contractions
+- look at todos; fix bugs
+- include short sentences
+- stats report:
+	- haiku/sentence
+	- syllable distribution
+
+next gen:
+- couplets
+- iambic pentameter
+- generate haiku by combining different parts of text
+- generate haiku with AI from text
+- generate poetry
+
+other:
+- read on accidental poetry / accidental haiku (something in financial times)
+- read on found poetry
+- read on AI poetry
