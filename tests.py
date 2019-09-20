@@ -9,6 +9,7 @@ not_haiku2 = 'a process the whiteness is not.'
 haiku_part1 = 'snow falls and is white.'
 haiku_part2 = 'the falling is a process.'
 haiku_part3 = 'the whiteness is not.'
+haiku_con = "a contraction can't be skipped. it's not too hard to detect; it doesn't take much."
 
 def concat(*args):
     return ' '.join(args)
@@ -35,6 +36,10 @@ class TestDetection(unittest.TestCase):
         self.assertEqual(len(extract_haikus(concat(haiku_part1, haiku_part2))), 0)
         self.assertEqual(len(extract_haikus(concat(haiku_part1, haiku_part2, haiku_part3))), 1)
         self.assertEqual(len(extract_haikus(concat(haiku_part1, haiku_part2, haiku_part3, haiku2))), 2)
+
+    def test_contraction(self):
+        self.assertEqual(len(extract_haikus(concat(haiku_con))), 1)
+        self.assertEqual(len(extract_haikus(concat(haiku_con, haiku_part2))), 1)
 
 if __name__ == '__main__':
     unittest.main()
