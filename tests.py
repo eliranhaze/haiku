@@ -9,7 +9,7 @@ not_haiku2 = 'a process the whiteness is not.'
 haiku_part1 = 'snow falls and is white.'
 haiku_part2 = 'the falling is a process.'
 haiku_part3 = 'the whiteness is not.'
-haiku_con = "a contraction can't be skipped. it's not too hard to detect; it doesn't take much."
+haiku_con = "a contraction can't be skipped. it's easy to find; it doesn't take much."
 
 def concat(*args):
     return ' '.join(args)
