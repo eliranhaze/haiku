@@ -10,9 +10,11 @@ haiku:
 - fix contractions
 - look at todos; fix bugs
 - include short sentences
+- add frequeltly missed words to dict (perhaps semi-auto by adding prefixes)
 - stats report:
 	- haiku/sentence
 	- syllable distribution
+- AI scoring (bag of words probs) for haikus for better filtering
 
 next gen:
 - couplets
