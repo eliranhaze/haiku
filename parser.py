@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from nltk.corpus import cmudict
-from nltk.tokenize import sent_tokenize # TODO: doesn't properly handle "i.e." and "e.g." IF NOT FOLLOWED BY COMMA, so might want to make special rule ro replace such things
+#from nltk.corpus import cmudict
+import cmudict # seems to contain more up to date dict
+from nltk.tokenize import TweetTokenizer, sent_tokenize # TODO: doesn't properly handle "i.e." and "e.g." IF NOT FOLLOWED BY COMMA, so might want to make special rule ro replace such things
 
 import re
 
@@ -9,6 +10,23 @@ import re
 
 # Resources:
 # - NY Times' haiku algorithm: https://haiku.nytimes.com/about
+
+class Syllables(object):
+
+    EXTRAS = {
+        'spacetime': 2,
+    }
+
+    def __init__(self):
+        self._dict = dict()
+        syl_dict = cmudict.dict()
+        for word in syl_dict.iterkeys():
+            num_syls = [len(list(y for y in x if y[-1].isdigit())) for x in syl_dict[word]][0]
+            self._dict[word] = num_syls
+        self._dict.update(self.EXTRAS)
+
+    def nsyls(self, word):
+        return self._dict.get(word.lower())
 
 class TextParser(object):
 
@@ -31,6 +49,9 @@ class HaikuParser(TextParser):
 
     # can also chop by comma (that's what Times does) and by 'and' or 'or'.
 
+    SYLS = Syllables()
+    WORD_TK = TweetTokenizer()
+
     def __init__(self, *arg, **kw):
         super(HaikuParser, self).__init__(*arg, **kw)
 
@@ -46,10 +67,10 @@ class HaikuParser(TextParser):
             yield sent
 
     def _nsyl(self, text):
-        pass
+        return sum(self._nsyl_word(word) for word in self.WORD_TK(text))
 
     def _nsyl_word(self, word):
-        pass
+        return self.SYLS.nsyls(word)
 
     def _haiku_cut(self, string):
         pass
