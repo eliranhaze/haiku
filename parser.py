@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#from nltk.corpus import cmudict
-import cmudict # seems to contain more up to date dict
+from nltk.corpus import cmudict
+#import nltk.cmudict # seems to contain more up to date dict
 from nltk.tokenize import TweetTokenizer, sent_tokenize # TODO: doesn't properly handle "i.e." and "e.g." IF NOT FOLLOWED BY COMMA, so might want to make special rule ro replace such things
 
 import re
@@ -10,6 +10,15 @@ import re
 
 # Resources:
 # - NY Times' haiku algorithm: https://haiku.nytimes.com/about
+
+##
+## TODO
+##
+## LAST: (oct 7)
+## - finished haiku_cut; should test and intergrate with text processing
+##
+## TODO
+##
 
 class Syllables(object):
 
@@ -37,7 +46,7 @@ class TextParser(object):
     @property
     def sentences(self):
         if self._sentences is None:
-            self.sentences = sent_tokenize(self._text)
+            self._sentences = sent_tokenize(self._text)
         return self._sentences
 
 class HaikuParser(TextParser):
@@ -66,14 +75,54 @@ class HaikuParser(TextParser):
         for sent in self.sentences:
             yield sent
 
-    def _nsyl(self, text):
-        return sum(self._nsyl_word(word) for word in self.WORD_TK(text))
+    def _words(self, string):
+        return self.WORD_TK.tokenize(string)
+
+    def _nsyls(self, text):
+        return [self._nsyl_word(word) for word in self.WORD_TK.tokenize(text)]
 
     def _nsyl_word(self, word):
         return self.SYLS.nsyls(word)
 
     def _haiku_cut(self, string):
-        pass
+
+        syls = [5, 7, 5]
+        lines = ['' for _ in xrange(len(syls))]
+        cur_syls = 0
+        cur_line = 0
+
+        for word in self._words(string):
+
+            nsyls = self._nsyl_word(word)
+
+            # advance line if needed - done here to swallow 0-syl words
+            if nsyls and cur_syls == syls[cur_line]:
+                if cur_line == len(lines):
+                    # not a haiku (too long)
+                    return
+                cur_line += 1
+                cur_syls = 0
+
+            cur_syls += nsyls if nsyls else 0
+
+            if cur_syls <= syls[cur_line]:
+                lines[cur_line] = self._attach(lines[cur_line], word)
+            else:
+                # not a haiku (no pattern)
+                return
+
+        # check haiku is right size
+        if all(lines) and cur_syls == syls[-1]: 
+            # a haiku!
+            return lines
+
+    def _attach(self, string, word):
+        if not string:
+            return word
+        if word[0].isalpha() or word[0].isdigit():
+            return string + ' ' + word
+        else:
+            return string + word
 
     def _parse_haikus(self):
         haikus = []
