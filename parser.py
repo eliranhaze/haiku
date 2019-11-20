@@ -14,8 +14,9 @@ import re
 ##
 ## TODO
 ##
-## LAST: (oct 7)
-## - finished haiku_cut; should test and intergrate with text processing
+## LOG: 
+## - nov 12 fixed haiku_cut + parsing; should integrate into unit tests and text processing
+## - oct 7 finished haiku_cut; should test and intergrate with text processing
 ##
 ## TODO
 ##
@@ -62,10 +63,11 @@ class HaikuParser(TextParser):
     WORD_TK = TweetTokenizer()
 
     def __init__(self, *arg, **kw):
+        self._haikus = None
         super(HaikuParser, self).__init__(*arg, **kw)
 
     @property
-    def parse_haikus(self):
+    def haikus(self):
         if self._haikus is None:
             self._haikus = self._parse_haikus()
         return self._haikus
@@ -86,6 +88,8 @@ class HaikuParser(TextParser):
 
     def _haiku_cut(self, string):
 
+        print 'cutting %s' % string
+
         syls = [5, 7, 5]
         lines = ['' for _ in xrange(len(syls))]
         cur_syls = 0
@@ -93,7 +97,10 @@ class HaikuParser(TextParser):
 
         for word in self._words(string):
 
-            nsyls = self._nsyl_word(word)
+            nsyls = self._nsyl_word(word) # TODO: i'm here counting again! could use the syl array i have from earlier
+
+            print 'lines: %s' % lines
+            print 'word %s has %s syls' % (word, nsyls)
 
             # advance line if needed - done here to swallow 0-syl words
             if nsyls and cur_syls == syls[cur_line]:
@@ -127,13 +134,17 @@ class HaikuParser(TextParser):
     def _parse_haikus(self):
         haikus = []
         candidate = ''
+        print 'parsing haiku: %s' % self._text
         for unit in self._text_units():
-            candidate += unit
-            num_syls = self._nsyl(candidate)
+            candidate += ' ' + unit
+            syls = self._nsyls(candidate) # TODO:why not just count the unit? instead of the whole candidate each time
+            num_syls = sum(n for n in syls if n) # skip Nones
+            print 'unit = %s (syl count: %s)' % (unit, num_syls)
             if num_syls < 17:
                 continue
             if num_syls == 17:
                 haiku = self._haiku_cut(candidate)
-                if haiku: haikus.append(candidate)
+                if haiku: haikus.append(haiku)
             candidate = ''
+        return haikus
 
