@@ -20,6 +20,8 @@ def concat(*args):
     return ' '.join(args)
 
 # TODO: add sanity test that resulting haiku has 5-7-5 syl count
+# TODO: add haikus we missing words - they should not be counted
+# TODO: add some real text and check for actual haikus
 
 class TestDetection(unittest.TestCase):
 
