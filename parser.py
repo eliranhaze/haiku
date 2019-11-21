@@ -25,8 +25,70 @@ import re
 
 class Syllables(object):
 
+    # TODO: handle numbers - not sure though. sometimes it's just page numbers and they are ignored
+
     EXTRAS = {
+        'actualized': 4,
+        'ascription': 3,
+        'connectedness': 4, # TODO: handle suffixes intelligently
+        'declarative': 4,
+        'declaratives': 4,
+        'dicto': 2,
+        'extensional': 4,
+        'extensionality': 6,
+        'felicitous': 4,
+        'fulfil': 2,
+        'indeterminacy': 6,
+        'indexical': 4,
+        'indexicality': 6,
+        'intensional': 4,
+        'iteration': 4,
+        'metaphysically': 5,
+        'presupposed': 3,
+        'presupposing': 4,
+        'presuppositions': 5, # TODO: handle plurals intelligently
+        'priori': 3,
+        'propositional': 5,
+        'quantifier': 4,
+        'reductionist': 4,
+        'sceptic': 2,
+        'sceptics': 2, # TODO: maybe there's a british english corpus as well? if so just combine the two
+        'scepticism': 4,
+        'simpliciter': 4,
         'spacetime': 2,
+        'subsume': 2,
+        'subsumes': 2,
+        'theoretic': 3,
+        'vacuously': 4,
+        'wherefore': 2,
+        'whereof': 2,
+    }
+
+    NAMES = {
+        'argle': 2,
+        'bargle': 2,
+        'carnap': 2,
+        'frege': 2,
+        'fregean': 3,
+        'geach': 1,
+        'gricean': 3,
+        'kripke': 2,
+        'nozick': 2,
+        'parfit': 2,
+        'wittgenstein': 3,
+    }
+
+    PREFIXES = {
+        'im': 1,
+        'in': 1,
+        'un': 1,
+        'sub': 1,
+        'non': 1,
+        'dis': 1,
+        'self': 1,
+        'counter': 2,
+        'under': 2,
+        'over': 2,
     }
 
     def __init__(self):
@@ -36,9 +98,23 @@ class Syllables(object):
             num_syls = [len(list(y for y in x if y[-1].isdigit())) for x in syl_dict[word]][0]
             self._dict[word] = num_syls
         self._dict.update(self.EXTRAS)
+        self._dict.update(self.NAMES)
 
     def nsyls(self, word):
-        return self._dict.get(word.lower())
+        word = word.lower()
+        n = self._dict.get(word)
+        return n if n else self._calc_missing(word)
+
+    def _calc_missing(self, word):
+        if '-' in word:
+            part_syls = [self.nsyls(part) for part in word.split('-')]
+            if all(part_syls):
+                return sum(part_syls)
+        for pref, pref_syl in self.PREFIXES.iteritems():
+            if word.startswith(pref):
+                n = self.nsyls(word[len(pref):])
+                if n:
+                    return pref_syl + n
 
 class NoSylError(ValueError):
     def __init__(self, message, word, *args):
@@ -148,6 +224,7 @@ class HaikuParser(TextParser):
 
     def _parse_haikus(self):
         haikus = []
+        missing = {}
         candidate = ''
         num_syls = 0
         #print 'parsing haiku: %s' % self._text
@@ -157,6 +234,7 @@ class HaikuParser(TextParser):
                 unit_syls = sum(n for n in self._nsyls(unit))
             except NoSylError as e:
                 print e
+                missing[e.word] = missing.get(e.word, 0) + 1
                 num_syls = 0
                 candidate = ''
                 continue
@@ -173,5 +251,9 @@ class HaikuParser(TextParser):
                     haikus.append(haiku)
             num_syls = 0
             candidate = ''
+
+        print 'found %d haikus' % len(haikus)
+        print 'missing words (%d):' % sum(missing.itervalues())
+        print sorted(missing.items(), key = lambda x: -x[1])
         return haikus
 
