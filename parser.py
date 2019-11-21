@@ -39,6 +39,12 @@ class Syllables(object):
     def nsyls(self, word):
         return self._dict.get(word.lower())
 
+class NoSylError(ValueError):
+    def __init__(self, message, word, *args):
+        self.message = message
+        self.word = word
+        super(NoSylError, self).__init__(message, word, *args)
+
 class TextParser(object):
 
     def __init__(self, text):
@@ -82,14 +88,21 @@ class HaikuParser(TextParser):
         return self.WORD_TK.tokenize(string)
 
     def _nsyls(self, text):
-        return [self._nsyl_word(word) for word in self.WORD_TK.tokenize(text)]
+        syls = []
+        for word in self.WORD_TK.tokenize(text):
+            if word[0].isalpha():
+                syl = self._nsyl_word(word)
+                if not syl:
+                    raise NoSylError('no syl for word', word)
+                syls.append(syl)
+        return syls
 
     def _nsyl_word(self, word):
         return self.SYLS.nsyls(word)
 
     def _haiku_cut(self, string):
 
-        print 'cutting %s' % string
+        #print 'cutting %s' % string
 
         syls = [5, 7, 5]
         lines = ['' for _ in xrange(len(syls))]
@@ -100,8 +113,8 @@ class HaikuParser(TextParser):
 
             nsyls = self._nsyl_word(word) # TODO: i'm here counting again! could use the syl array i have from earlier
 
-            print 'lines: %s' % lines
-            print 'word %s has %s syls' % (word, nsyls)
+            #print 'lines: %s' % lines
+            #print 'word %s has %s syls' % (word, nsyls)
 
             # advance line if needed - done here to swallow 0-syl words
             if nsyls and cur_syls == syls[cur_line]:
@@ -136,12 +149,18 @@ class HaikuParser(TextParser):
         haikus = []
         candidate = ''
         num_syls = 0
-        print 'parsing haiku: %s' % self._text
+        #print 'parsing haiku: %s' % self._text
         for unit in self._text_units():
             candidate += ' ' + unit
-            unit_syls = sum(n for n in self._nsyls(unit) if n) # skip Nones
+            try:
+                unit_syls = sum(n for n in self._nsyls(unit))
+            except NoSylError as e:
+                print e
+                num_syls = 0
+                candidate = ''
+                continue
             num_syls += unit_syls
-            print 'unit = %s (syl count: %s)' % (unit, num_syls)
+            #print 'unit = %s (syl count: %s)' % (unit, num_syls)
             if num_syls > 17 and unit_syls <= 17:
                 num_syls = unit_syls
                 candidate = unit
@@ -151,6 +170,7 @@ class HaikuParser(TextParser):
                 haiku = self._haiku_cut(candidate)
                 if haiku:
                     haikus.append(haiku)
+            num_syls = 0
             candidate = ''
         return haikus
 
