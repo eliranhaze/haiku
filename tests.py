@@ -1,4 +1,5 @@
-from haiku import extract_haikus
+#from haiku import extract_haikus
+from parser import HaikuParser
 
 import unittest
 
@@ -11,8 +12,14 @@ haiku_part2 = 'the falling is a process.'
 haiku_part3 = 'the whiteness is not.'
 haiku_con = "a contraction can't be skipped. it's easy to find; it doesn't take much."
 
+def extract_haikus(text):
+    parser = HaikuParser(text)
+    return parser.haikus
+
 def concat(*args):
     return ' '.join(args)
+
+# TODO: add sanity test that resulting haiku has 5-7-5 syl count
 
 class TestDetection(unittest.TestCase):
 

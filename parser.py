@@ -15,6 +15,7 @@ import re
 ## TODO
 ##
 ## LOG: 
+## - nov 20 intergrated unit tests; some fixes; should add more tests and integrate text processing
 ## - nov 12 fixed haiku_cut + parsing; should integrate into unit tests and text processing
 ## - oct 7 finished haiku_cut; should test and intergrate with text processing
 ##
@@ -134,17 +135,22 @@ class HaikuParser(TextParser):
     def _parse_haikus(self):
         haikus = []
         candidate = ''
+        num_syls = 0
         print 'parsing haiku: %s' % self._text
         for unit in self._text_units():
             candidate += ' ' + unit
-            syls = self._nsyls(candidate) # TODO:why not just count the unit? instead of the whole candidate each time
-            num_syls = sum(n for n in syls if n) # skip Nones
+            unit_syls = sum(n for n in self._nsyls(unit) if n) # skip Nones
+            num_syls += unit_syls
             print 'unit = %s (syl count: %s)' % (unit, num_syls)
+            if num_syls > 17 and unit_syls <= 17:
+                num_syls = unit_syls
+                candidate = unit
             if num_syls < 17:
                 continue
             if num_syls == 17:
                 haiku = self._haiku_cut(candidate)
-                if haiku: haikus.append(haiku)
+                if haiku:
+                    haikus.append(haiku)
             candidate = ''
         return haikus
 
