@@ -253,7 +253,8 @@ class HaikuParser(TextParser):
             candidate = ''
 
         print 'found %d haikus' % len(haikus)
-        print 'missing words (%d):' % sum(missing.itervalues())
-        print sorted(missing.items(), key = lambda x: -x[1])
+        if missing:
+            print 'missing words (%d):' % sum(missing.itervalues())
+            print sorted(missing.items(), key = lambda x: -x[1])
         return haikus
 
