@@ -26,8 +26,6 @@ import re
 
 class Syllables(object):
 
-    # TODO: handle numbers - not sure though. sometimes it's just page numbers and they are ignored
-
     EXTRAS = {
         'actualized': 4,
         'ascription': 3,
@@ -216,7 +214,7 @@ class HaikuParser(TextParser):
             # a haiku!
             return lines
 
-    def _attach(self, string, word):
+    def _attach(self, string, word): # TODO: fix " cases where it attaches to left
         if not string:
             return word
         if word[0].isalpha() or word[0].isdigit():
