@@ -15,6 +15,7 @@ import re
 ## TODO
 ##
 ## LOG: 
+## - nov 21 handled missing and hyphen words; there's more to handle there; should do processing as well
 ## - nov 21 tested lewis 1, works well; should: add missing words and handle hyphen words
 ## - nov 20 intergrated unit tests; some fixes; should add more tests and integrate text processing
 ## - nov 12 fixed haiku_cut + parsing; should integrate into unit tests and text processing
@@ -89,6 +90,7 @@ class Syllables(object):
         'counter': 2,
         'under': 2,
         'over': 2,
+        'anti': 2,
     }
 
     def __init__(self):
