@@ -22,6 +22,7 @@ def concat(*args):
 # TODO: add sanity test that resulting haiku has 5-7-5 syl count
 # TODO: add haikus we missing words - they should not be counted
 # TODO: add some real text and check for actual haikus
+# TODO: add benchmark test - time a haiku and print, to detect potential slowing down of algo
 
 class TestDetection(unittest.TestCase):
 

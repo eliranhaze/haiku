@@ -179,19 +179,14 @@ class HaikuParser(TextParser):
 
     def _haiku_cut(self, string):
 
-        #print 'cutting %s' % string
-
         syls = [5, 7, 5]
-        lines = ['' for _ in xrange(len(syls))]
+        lines = [[] for _ in xrange(len(syls))] # each line is a list of words
         cur_syls = 0
         cur_line = 0
 
-        for word in self._words(string):
+        for word in string.split():
 
-            nsyls = self._nsyl_word(word) # TODO: i'm here counting again! could use the syl array i have from earlier
-
-            #print 'lines: %s' % lines
-            #print 'word %s has %s syls' % (word, nsyls)
+            nsyls = sum(self._nsyl_word(w) for w in self._words(word) if w[0].isalpha())
 
             # advance line if needed - done here to swallow 0-syl words
             if nsyls and cur_syls == syls[cur_line]:
@@ -204,7 +199,8 @@ class HaikuParser(TextParser):
             cur_syls += nsyls if nsyls else 0
 
             if cur_syls <= syls[cur_line]:
-                lines[cur_line] = self._attach(lines[cur_line], word)
+                # within haiku format; add word to current line
+                lines[cur_line].append(word)
             else:
                 # not a haiku (no pattern)
                 return
@@ -213,14 +209,6 @@ class HaikuParser(TextParser):
         if all(lines) and cur_syls == syls[-1]: 
             # a haiku!
             return lines
-
-    def _attach(self, string, word): # TODO: fix " cases where it attaches to left
-        if not string:
-            return word
-        if word[0].isalpha() or word[0].isdigit():
-            return string + ' ' + word
-        else:
-            return string + word
 
     def _parse_haikus(self):
         haikus = []
@@ -252,7 +240,7 @@ class HaikuParser(TextParser):
             num_syls = 0
             candidate = ''
 
-        print 'found %d haikus' % len(haikus)
+        #print 'found %d haikus' % len(haikus)
         if missing:
             print 'missing words (%d):' % sum(missing.itervalues())
             print sorted(missing.items(), key = lambda x: -x[1])
