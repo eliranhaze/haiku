@@ -66,6 +66,7 @@ class Syllables(object):
         'reductio': 4,
         'reductionist': 4,
         'sceptic': 2,
+        'sceptical': 3,
         'sceptics': 2, # TODO: maybe there's a british english corpus as well? if so just combine the two
         'scepticism': 4,
         'simpliciter': 4,
