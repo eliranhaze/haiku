@@ -15,6 +15,7 @@ import re
 ## TODO
 ##
 ## LOG: 
+## - nov 24 added text processing; next: add more tests; smart haiku filtering
 ## - nov 21 handled missing and hyphen words; there's more to handle there; should do processing as well
 ## - nov 21 tested lewis 1, works well; should: add missing words and handle hyphen words
 ## - nov 20 intergrated unit tests; some fixes; should add more tests and integrate text processing
@@ -29,11 +30,17 @@ class Syllables(object):
     EXTRAS = {
         'actualized': 4,
         'ascription': 3,
+        'ascriptions': 3,
         'centerless': 3,
         'connectedness': 4, # TODO: handle suffixes intelligently
+        'connexion': 3,
+        'contextualism': 6,
+        'contextualist': 5,
         'declarative': 4,
         'declaratives': 4,
         'dicto': 2,
+        'encodes': 2,
+        'epistemic': 4,
         'epistemological': 7,
         'extensional': 4,
         'extensionality': 6,
@@ -43,14 +50,19 @@ class Syllables(object):
         'indexical': 4,
         'indexicality': 6,
         'intensional': 4,
+        'intimating': 4,
         'iteration': 4,
         'metaphysically': 5,
+        'pragmatics': 3,
+        'premiss': 2,
+        'premisses': 3,
         'presupposed': 3,
         'presupposing': 4,
         'presuppositions': 5, # TODO: handle plurals intelligently
         'priori': 3,
         'propositional': 5,
         'quantifier': 4,
+        'reductio': 4,
         'reductionist': 4,
         'sceptic': 2,
         'sceptics': 2, # TODO: maybe there's a british english corpus as well? if so just combine the two
@@ -75,12 +87,16 @@ class Syllables(object):
         'chomsky': 2,
         'dummett': 2,
         'frege': 2,
+        "frege's": 2,
         'fregean': 3,
         'geach': 1,
         'gricean': 3,
+        'hesperus': 3,
         'kripke': 2,
+        "kripke's": 2,
         'nozick': 2,
         'parfit': 2,
+        'sorites': 4,
         'strawson': 2,
         'wittgenstein': 3,
     }
@@ -97,6 +113,8 @@ class Syllables(object):
         'under': 2,
         'over': 2,
         'anti': 2,
+        'meta': 2,
+        'contra': 2,
     }
 
     def __init__(self):
