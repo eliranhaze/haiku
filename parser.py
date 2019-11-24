@@ -15,6 +15,7 @@ import re
 ## TODO
 ##
 ## LOG: 
+## - nov 24 also handle sentences that come after ':', e.g. in plato!
 ## - nov 24 added text processing; next: add more tests; smart haiku filtering
 ## - nov 21 handled missing and hyphen words; there's more to handle there; should do processing as well
 ## - nov 21 tested lewis 1, works well; should: add missing words and handle hyphen words
