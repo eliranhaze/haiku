@@ -124,13 +124,13 @@ def extract_haikus(text):
     keep_prev = False
     for i, s in enumerate(sentences):
         try:
-            print 'checking: %s' % s
+            #print 'checking: %s' % s
             words = get_words(s)
             syls = first_n_syls2(words, 17)
-            print '%d syls' % syls
+            #print '%d syls' % syls
             if syls == 17:
                 haiku_cands.append(s)
-                print 'added: %s' % s
+                #print 'added: %s' % s
                 prev = ''
                 prev_n = 0
             elif 0 < syls < 17:
@@ -139,14 +139,14 @@ def extract_haikus(text):
                 keep_prev = True
                 if prev_n == 17:
                     haiku_cands.append(prev)
-                    print 'added: %s' % prev
+                    #print 'added: %s' % prev
             if not keep_prev:
                     prev = ''
                     prev_n = 0
         except: # TODO: proper handling?
         #    prev = ''
          #   prev_n = 0
-         print 'error'
+         #print 'error'
          pass
         if (i+1) % 500 == 0:
             print 'processed: %d' % (i+1)

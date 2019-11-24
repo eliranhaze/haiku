@@ -221,7 +221,7 @@ class HaikuParser(TextParser):
             try:
                 unit_syls = sum(n for n in self._nsyls(unit))
             except NoSylError as e:
-                print e
+                #print e
                 missing[e.word] = missing.get(e.word, 0) + 1
                 num_syls = 0
                 candidate = ''
