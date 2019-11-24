@@ -29,10 +29,12 @@ class Syllables(object):
     EXTRAS = {
         'actualized': 4,
         'ascription': 3,
+        'centerless': 3,
         'connectedness': 4, # TODO: handle suffixes intelligently
         'declarative': 4,
         'declaratives': 4,
         'dicto': 2,
+        'epistemological': 7,
         'extensional': 4,
         'extensionality': 6,
         'felicitous': 4,
@@ -54,7 +56,9 @@ class Syllables(object):
         'sceptics': 2, # TODO: maybe there's a british english corpus as well? if so just combine the two
         'scepticism': 4,
         'simpliciter': 4,
+        'solipsism': 4,
         'spacetime': 2,
+        'subjectively': 4,
         'subsume': 2,
         'subsumes': 2,
         'theoretic': 3,
@@ -63,10 +67,13 @@ class Syllables(object):
         'whereof': 2,
     }
 
-    NAMES = {
+    NAMES = { # TODO: add handling for possessives
         'argle': 2,
         'bargle': 2,
+        'bentham': 2,
         'carnap': 2,
+        'chomsky': 2,
+        'dummett': 2,
         'frege': 2,
         'fregean': 3,
         'geach': 1,
@@ -74,6 +81,7 @@ class Syllables(object):
         'kripke': 2,
         'nozick': 2,
         'parfit': 2,
+        'strawson': 2,
         'wittgenstein': 3,
     }
 
@@ -148,6 +156,7 @@ class HaikuParser(TextParser):
 
     def __init__(self, *arg, **kw):
         self._haikus = None
+        self._missing = {}
         super(HaikuParser, self).__init__(*arg, **kw)
 
     @property
@@ -210,9 +219,14 @@ class HaikuParser(TextParser):
             # a haiku!
             return lines
 
+    def _clean_text(self):
+        self._text = self._text.replace(u"’", "'")
+
     def _parse_haikus(self):
+
+        self._clean_text()
+
         haikus = []
-        missing = {}
         candidate = ''
         num_syls = 0
         #print 'parsing haiku: %s' % self._text
@@ -222,7 +236,7 @@ class HaikuParser(TextParser):
                 unit_syls = sum(n for n in self._nsyls(unit))
             except NoSylError as e:
                 #print e
-                missing[e.word] = missing.get(e.word, 0) + 1
+                self._missing[e.word] = self._missing.get(e.word, 0) + 1
                 num_syls = 0
                 candidate = ''
                 continue
@@ -240,9 +254,5 @@ class HaikuParser(TextParser):
             num_syls = 0
             candidate = ''
 
-        #print 'found %d haikus' % len(haikus)
-        if missing:
-            print 'missing words (%d):' % sum(missing.itervalues())
-            print sorted(missing.items(), key = lambda x: -x[1])
         return haikus
 
