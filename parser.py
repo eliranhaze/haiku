@@ -34,11 +34,13 @@ class Syllables(object):
 
     EXTRAS = {
         'actualized': 4,
+        'analyse': 3,
         'ascription': 3,
         'ascriptions': 3,
         'behaviour': 3,
         'causally': 3,
         'centerless': 3,
+        'colour': 2,
         'conditionals': 4,
         'conjunct': 2,
         'conjuncts': 2,
@@ -68,6 +70,7 @@ class Syllables(object):
         'felicitous': 4,
         'fulfil': 2,
         'fulfilment': 3,
+        'grue': 1,
         'indeterminacy': 6,
         'indexical': 4,
         'indexicality': 6,
@@ -77,6 +80,8 @@ class Syllables(object):
         'iteration': 4,
         'kk': 2,
         'logics': 2,
+        'meme': 1,
+        'memes': 1,
         'metaphysically': 5,
         'neuron': 2,
         'ponens': 2,
@@ -90,8 +95,10 @@ class Syllables(object):
         'propositional': 5,
         'quantifier': 4,
         'quantifiers': 4,
+        'quus': 1,
         'reductio': 4,
         'reductionist': 4,
+        'referent': 3,
         'sceptic': 2,
         'sceptical': 3,
         'sceptics': 2, # TODO: maybe there's a british english corpus as well? if so just combine the two
@@ -107,12 +114,16 @@ class Syllables(object):
         'theoretic': 3,
         'throbs': 1,
         'tollens': 2,
+        'toothache': 2,
+        'tractatus': 3,
         'trivially': 4,
+        'unicorns': 3,
         'universals': 4,
         'vacuously': 4,
         'wherefore': 2,
         'whereof': 2,
         'whitecaps': 2,
+        'wrongness': 2,
     }
 
     NAMES = { # TODO: add handling for possessives
@@ -128,6 +139,8 @@ class Syllables(object):
         "frege's": 2,
         'fregean': 3,
         'geach': 1,
+        'godel': 2,
+        "godel's": 2,
         'gricean': 3,
         'heidegger': 3,
         'hesperus': 3,
@@ -147,6 +160,7 @@ class Syllables(object):
         'strawson': 2,
         'tarski': 2,
         'wittgenstein': 3,
+        "wittgenstein's": 3,
     }
 
     PREFIXES = {
@@ -288,6 +302,8 @@ class HaikuParser(TextParser):
 
     def _clean_text(self):
         self._text = self._text.replace(u"’", "'")
+        self._text = self._text.replace(u"ﬁ", "fi")
+        self._text = self._text.replace(u"ﬂ", "fl")
 
     def _parse_haikus(self):
 
