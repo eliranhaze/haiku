@@ -30,6 +30,8 @@ DATA = {
         "I am not used to measuring temperatures on the Fahrenheit scale.",
         "Fear for others is only a shade better than fear for ourselves.",
         "Why was the world not created sooner? Because there was no sooner.",
+        "How many facts or propositions are conveyed by a photograph?",
+        "We often succumb to temptation with calm and even with finesse.",
 
         # real haikus (not necessarily 5-7-5)
         "An old silent pond. A frog jumps into the pond — Splash! Silence again.",
@@ -68,6 +70,25 @@ DATA = {
     0: [
 
         # found
+        "Further constraints could be added, but they will not be considered here.",
+        "After all, there is nothing indeterminate about such cases.",
+        "Its premises claim the least, and are therefore the hardest to deny.",
+        "The evidence gives little support to any of these suggestions.",
+        "I will return to this matter when it becomes relevant later.",
+        "What should worry us about the ideal objects is the following.",
+        "In neither case is synonymy to be claimed for the paraphrase.",
+        "In neither case does the sentence refer to a generic action.",
+        "But there are plenty of other contexts in which the same need presses.",
+        "But these events do not sound like ordinary bodily movements.",
+        "We can, however, take it as given that most beliefs are correct.",
+        "This reply does not, as might first be thought, merely restate the problem.",
+        "But then there is a question how we understand the metalanguage.",
+        "Our problem is that they have altogether too much in common.",
+        "Even with working models there are limits to isomorphism.",
+        "The last phrase, I have been suggesting, contains an ambiguity.",
+        "Here too, I think it is clear that the evidence supports my account.",
+        "Why are the authors of these theories not impressed by these examples?",
+        "There are several such puzzling examples in the literature.",
         "Such costs would not be lightly recouped, one would think. These are good questions.",
         "The second concept which is in question is that of necessity.",
         "But even when they are unhappy, I do not think that they are bored.",
@@ -118,6 +139,7 @@ DATA = {
         "APPENDIX B Some More Questions About Science [For context, see p.",
         "Consequently, the above so-called law is not a law of nature.",
         "From this primitive conjunction follow many important results.",
+        "To do this, we need a bridge between the abstract and concrete domains.",
     ],
 }
 
