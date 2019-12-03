@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from parser import HaikuParser
+from brains import predict
 
 import io
 import os
@@ -17,6 +18,7 @@ class HaikuProcessor(object):
         self._print_missing()
 
     def _extract_haikus(self):
+        p = predict.Prediction()
         for f in self._files:
             print '-' * 40
             print 'extracting haikus: %s' % f
@@ -26,6 +28,8 @@ class HaikuProcessor(object):
             print 'haikus (%d):' % len(haikus)
             for h in haikus:
                 print self._format_haiku(h)
+                text = ' '.join([' '.join(line) for line in h])
+                print 'score: %.2f' % (p.predict(text)[1])
             print '-' * 40
             self._missing.update(hp._missing)
 
