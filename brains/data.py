@@ -29,6 +29,7 @@ DATA = {
         "Look at the blue of the sky and say to yourself How blue the sky is!",
         "I am not used to measuring temperatures on the Fahrenheit scale.",
         "Fear for others is only a shade better than fear for ourselves.",
+        "Why was the world not created sooner? Because there was no sooner.",
 
         # real haikus (not necessarily 5-7-5)
         "An old silent pond. A frog jumps into the pond — Splash! Silence again.",
@@ -60,6 +61,9 @@ DATA = {
         "Moon's brightness I wonder where they're bombing",
         "First snow Falling On the half-finished bridge.",
         "See the river flow In a long unbroken line On the field of snow.",
+        "Sudden spring storm-a family of ducks paddles around the deserted lake.",
+        "The summer river: although there is a bridge, my horse goes through the water.",
+        "Sick on a journey-Over parched fields Dreams wander on.",
     ],
     0: [
 
