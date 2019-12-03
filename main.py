@@ -30,9 +30,14 @@ class HaikuProcessor(object):
             self._missing.update(hp._missing)
 
     def _print_missing(self):
+        limit = 25
         if self._missing:
             print 'missing words (%d):' % sum(self._missing.itervalues())
-            print sorted(self._missing.items(), key = lambda x: -x[1])
+            if len(self._missing) > limit:
+                print '(top %d)' % limit
+            sorted_missing = sorted(self._missing.items(), key = lambda x: -x[1])[:limit]
+            for word, count in sorted_missing:
+                print '%s %d' % (word, count)
 
     def _format_haiku(self, haiku):
         lines = tuple(' '.join(h) for h in haiku)
