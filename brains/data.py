@@ -8,7 +8,7 @@ DATA = {
     1: [
         # found
         "No Grandfather, no Father; no Father, no Tim; no Tim, no killing.",
-        "Snow falls and is white; the falling is a process, the whiteness is not.",
+        "Snow falls and is white; the falling is a process, the whiteness is not.",     # ^ ^ - - ^; - ^ - - - ^ -; - ^ - - ^
         "We sometimes say: in later life I will be a different person.",
         "The game, one would like to say, has not only rules but also a point.",
         "Suppose that I cling to some rock as a mere means of escaping death.",
@@ -18,7 +18,7 @@ DATA = {
         "What does it mean to stop when the marks of going on are no longer?",
         "Suppose, as I stare at a glass in front of me, I say or think: There.",
         "Why is science so rare and faith so common in human history?",
-        "We are not simply fallible at the margins but broadly inept.",
+        "We are not simply fallible at the margins but broadly inept.",                 # - - ^ ^ -; ^ - - - - ^ -; - ^ - - ^
         "How can man, who is born free, rightly come to be everywhere in chains?",
         "When I turn my eye inward, I find nothing but doubt and ignorance.",
         "You have an auto accident one winter night on a lonely road.",
@@ -34,18 +34,18 @@ DATA = {
         "We often succumb to temptation with calm and even with finesse.",
 
         # real haikus (not necessarily 5-7-5)
-        "An old silent pond. A frog jumps into the pond — Splash! Silence again.",
-        "A world of dew, And within every dewdrop A world of struggle.",
+        "An old silent pond. A frog jumps into the pond — Splash! Silence again.",      # - ^ ^ - ^; - ^ ^ - - - ^; ^ ^ - - ^
+        "A world of dew, And within every dewdrop A world of struggle.",                # - ^ - ^; - - ^ ^ - ^ -; - ^ - ^ -
         "The light of a candle Is transferred to another candle — Spring twilight",
         "Over the wintry Forest, winds howl in rage With no leaves to blow.",
-        "The apparition of these faces in the crowd; Petals on a wet, black bough.",
+        "The apparition of these faces in the crowd; Petals on a wet, black bough.",    # - - - ^ - - - ^ - - - ^; ^ - - - ^ ^ ^
         "The taste Of rain — Why kneel?",
         "love between us is speech and breath. loving you is a long river running.",
         "The west wind whispered, And touched the eyelids of spring: Her eyes, Primroses.",
         "Whitecaps on the bay: A broken signboard banging In the April wind.",
         "an aging willow — its image unsteady in the flowing stream",
         "Snow in my shoe Abandoned Sparrow's nest",
-        "this piercing cold – in the bedroom, I have stepped on my dead wife’s comb",
+        "this piercing cold – in the bedroom, I have stepped on my dead wife's comb",
         "the Flower Festival – a mother’s womb is only for temporary lodging",
         "sound of dance music — the last fishing boat throbs into place",
         "shipping oars I hold my breath to hear snow on the water",
@@ -70,7 +70,8 @@ DATA = {
     0: [
 
         # found
-        "Further constraints could be added, but they will not be considered here.",
+        "Further constraints could be added, but they will not be considered here.",    # ^ - - ^ - - ^ -; - - - ^ - - ^ - -
+        "Similarly, of course, for my stepping back from my preferences.",
         "After all, there is nothing indeterminate about such cases.",
         "Its premises claim the least, and are therefore the hardest to deny.",
         "The evidence gives little support to any of these suggestions.",

@@ -14,6 +14,7 @@ import re
 
 # Resources:
 # - NY Times' haiku algorithm: https://haiku.nytimes.com/about
+# - Parsing tools and poetry algorithms: http://ryanheuser.org/tools and http://ryanheuser.org/sonnet-from-numbers
 
 ##
 ## TODO
