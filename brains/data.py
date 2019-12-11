@@ -71,6 +71,7 @@ DATA = {
 
         # found
         "Further constraints could be added, but they will not be considered here.",    # ^ - - ^ - - ^ -; - - - ^ - - ^ - -
+        "Also, some special flexibility in the theory is discussed.",
         "Similarly, of course, for my stepping back from my preferences.",
         "After all, there is nothing indeterminate about such cases.",
         "Its premises claim the least, and are therefore the hardest to deny.",

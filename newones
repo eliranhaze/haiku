@@ -63,3 +63,56 @@ even with finesse.
 score: 0.22
 **********************************
 ----------------------------------------
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/textnew/themes-kaplan.txt
+haikus (67):
+**********************************
+Let all actual
+  individuals exist
+necessarily.
+score: 0.30
+**********************************
+Suppose you see both
+  a line and a bar on a
+wallpaper pattern.
+score: 0.79
+**********************************
+Fregean thoughts are
+  the common treasure of all
+rational beings.
+score: 0.29
+**********************************
+Suppose I point at
+  Paul and say, He now lives in
+Princeton, New Jersey.
+score: 0.75
+**********************************
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/text/yablo-aboutness.txt
+haikus (56):
+**********************************
+Consider Albert,
+  prince consort. He lived in the
+nineteenth century.
+score: 0.28
+**********************************
+Well, w has
+  a certain number of stars,
+let's say a billion.
+score: 0.62
+**********************************
+Imagine a dog
+  with its head in Moscow and
+tail in Leningrad.
+score: 0.67
+**********************************
+Is the act of will
+  what my arm's going up adds
+to my raising it?
+score: 0.60
+**********************************
+One can see a horse
+  as a unicorn, or a
+harbinger of doom.
+score: 0.44
+**********************************

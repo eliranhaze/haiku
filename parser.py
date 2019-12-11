@@ -20,6 +20,7 @@ import re
 ## TODO
 ##
 ## LOG: 
+## - dec 11 i should write something that automatically finds and downloads texts and mines them
 ## - nov 24 also handle sentences that come after ':', e.g. in plato!
 ## - nov 24 added text processing; next: add more tests; smart haiku filtering
 ## - nov 21 handled missing and hyphen words; there's more to handle there; should do processing as well
@@ -53,6 +54,8 @@ class Syllables(object):
         'credences': 3,
         'declarative': 4,
         'declaratives': 4,
+        'demonstratives': 4,
+        'denotation': 4,
         'dewdrop': 2,
         'dicto': 2,
         'disjunct': 2,
@@ -76,6 +79,7 @@ class Syllables(object):
         'grue': 1,
         'indeterminacy': 6,
         'indexical': 4,
+        'indexicals': 4,
         'indexicality': 6,
         'inductive': 3,
         'intensional': 4,
@@ -101,14 +105,19 @@ class Syllables(object):
         'quantifier': 4,
         'quantifiers': 4,
         'quus': 1,
+        'recursive': 3,
         'reductio': 4,
         'reductionist': 4,
         'reductive': 3,
         'referent': 3,
+        'referents': 3,
+        'referential': 4,
         'sceptic': 2,
         'sceptical': 3,
         'sceptics': 2, # TODO: maybe there's a british english corpus as well? if so just combine the two
         'scepticism': 4,
+        'semantical': 4,
+        'semantically': 4,
         'signboard': 2,
         'simpliciter': 4,
         'solipsism': 4,
@@ -118,6 +127,7 @@ class Syllables(object):
         'subsume': 2,
         'subsumes': 2,
         'synonymy': 4,
+        'syntactic': 3,
         'theoretic': 3,
         'throbs': 1,
         'tollens': 2,
@@ -131,9 +141,13 @@ class Syllables(object):
         'whereof': 2,
         'whitecaps': 2,
         'wrongness': 2,
+        u'ϕ': 1,
+        u'ψ': 1,
+        u'τ': 1,
     }
 
     NAMES = { # TODO: add handling for possessives
+        'almog': 2,
         'argle': 2,
         'avicenna': 4,
         'bargle': 2,
@@ -163,6 +177,8 @@ class Syllables(object):
         'ockham': 2,
         'parfit': 2,
         "quine's": 1,
+        'russellian': 4,
+        'soames': 1,
         'sorites': 4,
         'strawson': 2,
         'tarski': 2,
@@ -186,6 +202,7 @@ class Syllables(object):
         'meta': 2,
         'contra': 2,
         'super': 2,
+        'truth': 1,
     }
 
     def __init__(self):
