@@ -16,7 +16,7 @@ class Prediction(object):
     PKL_SOURCES = '.sources.pkl'
     INSTANCE = None
 
-    def __init__(self):
+    def __init__(self, source = DATA):
         training_size = 1000 # not really
         num_iter = 10**6 / training_size # scikit recommendation
         self.classifier = Pipeline([
@@ -30,7 +30,7 @@ class Prediction(object):
                 random_state=42,
             )),
         ])
-        self._train()
+        self._train(source)
 
     @classmethod
     def get(cls):
@@ -54,12 +54,12 @@ class Prediction(object):
         logger.debug('new classifier created')
         return prediction
 
-    def _train(self):
-        data, target = self._get_data()
+    def _train(self, source = DATA):
+        data, target = self._get_data(source)
         self.classifier.fit(data, target)
 
-    def _get_data(self):
-        data, target = get_data()
+    def _get_data(self, source):
+        data, target = get_data(source)
         return data, target
 
     def predict(self, x):
