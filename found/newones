@@ -1,0 +1,145 @@
+russel history:
+'You may undersell', u'a competitor, but you', u'must not murder him.'
+
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/textnew/putnam-reason-truth.txt
+haikus (15):
+**********************************
+Suppose these humans,
+  although otherwise like us,
+have never seen trees.
+score: 0.58
+**********************************
+Suppose you are like
+  me and cannot tell an elm
+tree from a beech tree.
+score: 0.78
+**********************************
+What is bad about
+  being a Nazi is what
+it leads you to do.
+score: 0.38
+----------------------------------------
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/textnew/lewis-plurality.txt
+haikus (57):
+**********************************
+Does anything go
+  faster than light?' - 'No' says the
+truth (let us suppose).
+score: 0.80
+**********************************
+Surely there must be
+  an end sooner or later,
+and why not sooner?
+score: 0.76
+**********************************
+Common sense has no
+  absolute authority
+in philosophy.
+score: 0.78
+**********************************
+Paradise on the
+  cheap, like the famous free lunch,
+is not to be had.
+score: 0.72
+**********************************
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/pdftotext (3) 2/Donald Davidson - Inquiries into Truth and Interpretation (2001, Oxford University Press, USA).txt
+haikus (26):
+**********************************
+How many facts or
+  propositions are conveyed
+by a photograph?
+score: 0.29
+**********************************
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/pdftotext (3) 2/(Philosophical Essays of Donald Davidson) Donald Davidson - Essays on Actions and Events -Oxford University Press, USA (2001).txt
+haikus (26):
+**********************************
+We often succumb
+  to temptation with calm and
+even with finesse.
+score: 0.22
+**********************************
+----------------------------------------
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/textnew/themes-kaplan.txt
+haikus (67):
+**********************************
+Let all actual
+  individuals exist
+necessarily.
+score: 0.30
+**********************************
+Suppose you see both
+  a line and a bar on a
+wallpaper pattern.
+score: 0.79
+**********************************
+Fregean thoughts are
+  the common treasure of all
+rational beings.
+score: 0.29
+**********************************
+Suppose I point at
+  Paul and say, He now lives in
+Princeton, New Jersey.
+score: 0.75
+**********************************
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/text/yablo-aboutness.txt
+haikus (56):
+**********************************
+Consider Albert,
+  prince consort. He lived in the
+nineteenth century.
+score: 0.28
+**********************************
+Well, w has
+  a certain number of stars,
+let's say a billion.
+score: 0.62
+**********************************
+Imagine a dog
+  with its head in Moscow and
+tail in Leningrad.
+score: 0.67
+**********************************
+Is the act of will
+  what my arm's going up adds
+to my raising it?
+score: 0.60
+**********************************
+One can see a horse
+  as a unicorn, or a
+harbinger of doom.
+score: 0.44
+**********************************
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/text/macfarlane-assessment.txt
+haikus (6):
+**********************************
+Before we get out
+  of the rabbit-hole, we need
+to fall into it.
+score: 0.32
+**********************************
+----------------------------------------
+extracting haikus: /Users/eliran/Downloads/text/moore-principia.txt
+haikus (21):
+**********************************
+my answer is that
+  good is good, and that is the
+end of the matter.
+score: 0.28			  # response to 'what is good?'
+**********************************
+----------------------------------------
+extracting haikus: text/nozick-utopia.txt
+haikus (31):
+**********************************
+To exist for a
+  while is better than never
+to exist at all.
+score: 0.27
+**********************************
