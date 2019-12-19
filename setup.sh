@@ -17,4 +17,7 @@ for file in *.pdf; do pdftotext "$file" "$file.txt"; done
 rm -f *.pdf
 cd ..
 
-echo "done"
+echo "extracting haikus"
+python main.py tmp > found/$1.out 2> /dev/null
+
+echo "output: found/$1.out"
