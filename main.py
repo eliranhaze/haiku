@@ -49,7 +49,9 @@ class HaikuProcessor(object):
         filtered = []
         for h in haikus:
             skip, score = self._should_skip(h)
-            if not skip:
+            if skip:
+                self._skipped += 1
+            else:
                 filtered.append((h, score))
         return filtered
 
