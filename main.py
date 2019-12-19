@@ -9,42 +9,66 @@ import sys
 
 class HaikuProcessor(object):
 
-    TEXT_CUTOFF_SCORE = 0.59
+    HAIKU_PRINT_FORMAT = True # print 3 haiku lines; otherwise print 1 line
+
+    TEXT_SCORE_CUTOFF = 0.59 # haikus below this score are filtered
+    DIGIT_CUTOFF = 5 # haikus with more digits are filtered
+
+    SKIP_WORDS = [ # haikus with these words are filtered
+        'Routledge',
+        'Clarendon',
+        'Oxford:',
+        'Blackwell',
+    ]
 
     def __init__(self, files):
         self._files = files
         self._missing = {}
         self._skipped = 0
+        self._found = 0
         self._predictor = predict.Prediction(source=data.IS_TEXT)
 
     def process(self):
         self._extract_haikus()
         self._print_missing()
+        print 'found: %d haikus' % self._found
         print 'skipped: %d haikus' % self._skipped
 
     def _extract_haikus(self):
         for f in self._files:
             text = io.open(f, encoding='utf-8').read()
             hp = HaikuParser(text)
-            haikus = filter(self._should_keep, hp.haikus)
+            haikus = self._filter_haikus(hp.haikus)
             if haikus:
                 self._print_haikus(f, haikus)
+                self._found += len(haikus)
             self._missing.update(hp._missing)
+
+    def _filter_haikus(self, haikus):
+        """ note: returns a list of pairs of haikus with scores """
+        filtered = []
+        for h in haikus:
+            skip, score = self._should_skip(h)
+            if not skip:
+                filtered.append((h, score))
+        return filtered
 
     def _get_score(self, haiku_text):
         return self._predictor.predict(haiku_text)[1]
 
     def _print_haikus(self, title, haikus):
         print '%s haikus (%d):' % (title, len(haikus))
-        for h in haikus:
-            text = ' '.join([' '.join(line) for line in h])
-            score = self._get_score(text)
-            if score < self.TEXT_CUTOFF_SCORE: # TODO: move to should_skip
-                self._skipped += 1
-                continue
+        for h, score in haikus:
             print '%s [%.2f]' % (self._format_haiku(h), score)
-            text = ' '.join([' '.join(line) for line in h])
         print '-' * 40
+
+    def _format_haiku(self, haiku):
+        if self.HAIKU_PRINT_FORMAT:
+            lines = tuple(' '.join(h) for h in haiku)
+            pad = '*' * 34
+            formatted = '%s\n  %s\n%s' % lines
+            return '%s\n%s' % (pad, formatted)
+        return '\t"%s %s %s",' % lines
 
     def _print_missing(self):
         limit = 25
@@ -56,37 +80,15 @@ class HaikuProcessor(object):
             for word, count in sorted_missing:
                 print '%s %d' % (word, count)
 
-    def _format_haiku(self, haiku):
-        lines = tuple(' '.join(h) for h in haiku)
-        pad = '*' * 34
-        formatted = '%s\n  %s\n%s' % lines
-        return '%s\n%s' % (pad, formatted)
-        #return '\t"%s %s %s",' % lines
-
-    def _should_keep(self, haiku):
-        return not self._should_skip(haiku)
-
     def _should_skip(self, haiku):
-        skip_words = [
-            'Routledge',
-            'Clarendon',
-            'Oxford:',
-            'Blackwell',
-        ]
-        digits = 0
-        for h in haiku:
-            for s in skip_words:
-                if s in h:
-                    self._skipped += 1
-                    return True
-            for word in h:
-                for char in word:
-                    if char.isdigit():
-                        digits += 1
-                if digits > 5:
-                    self._skipped += 1
-                    return True
-        return False
+        text = ' '.join([' '.join(line) for line in haiku])
+        if any(w in text for w in self.SKIP_WORDS) or sum(1 for c in text if c.isdigit()) > self.DIGIT_CUTOFF:
+            score = 0 # skip score calc
+        else:
+            score = self._get_score(text)
+        if score < self.TEXT_SCORE_CUTOFF:
+            return True, score
+        return False, score
 
 def get_files(path):
     files = []
