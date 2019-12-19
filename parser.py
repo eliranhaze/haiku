@@ -40,6 +40,7 @@ class Syllables(object):
         'analogical': 5,
         'analyse': 3,
         'analysed': 3,
+        'anthropocene': 4,
         'ascription': 3,
         'ascriptions': 3,
         'attributions': 4,
@@ -148,6 +149,7 @@ class Syllables(object):
         'phenomenology': 6,
         'phenomenologically': 7,
         'physicalism': 5,
+        'plasticity': 4,
         'plenitude': 3,
         'ponens': 2,
         'pragmatics': 3,
@@ -244,6 +246,7 @@ class Syllables(object):
         'avicenna': 4,
         'bargle': 2,
         'bayesian': 3,
+        'beauvoir': 2,
         'bentham': 2,
         'bergson': 2,
         "bergson's": 2,
@@ -252,6 +255,7 @@ class Syllables(object):
         'carnap': 2,
         'chomsky': 2,
         "darwin's": 2,
+        'deleuze': 2,
         'dummett': 2,
         'foucault': 2,
         'frege': 2,
@@ -265,6 +269,7 @@ class Syllables(object):
         "godel's": 2,
         u'gödel': 2,
         u"gödel's": 2,
+        'gorgias': 3,
         'gricean': 3,
         "grice's": 2,
         "hegel's": 2,
@@ -327,6 +332,7 @@ class Syllables(object):
         'contra': 2,
         'super': 2,
         'hyper': 2,
+        'inter': 2,
     }
 
     def __init__(self):

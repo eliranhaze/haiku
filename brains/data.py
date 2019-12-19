@@ -330,6 +330,7 @@ IS_TEXT = {
 	"If one had done so, one would have made, of course, a different object.",
 	"It does not feel cold and it probably would if it were made of ice.",
 	"Is it the case that if someone knows something, she knows that she knows it?",
+        "I thank Richard Vernon and Charles Jones for their support and feedback.",
 	"To say that he does not exist is to say that this is not the case.",
 	"Recall that when this talk was given, the lectures were fairly recent.",
 	"Hamlet thought many things, but does it follow that Hamlet existed?",
@@ -461,6 +462,7 @@ IS_TEXT = {
         "She is presently pacing up and down in the garden, deep in thought.",
     ],
     0: [
+        "[1903]: The Principles of Mathematics, W. W. Norton.",
         "Hardcastle, V. G., & Stewart, C. M. (2002). What do brain data really show?",
         "First, M. B., Spitzer, R. L., Gibbon, M., & Williams, J. B. W. (1997).",
         "Thought experiments: The state of the art. In M. T. Stuart, et al.",
@@ -610,6 +612,7 @@ IS_TEXT = {
         "The British Journal for the Philosophy of Science, 62(4), 857–894. Carroll, L. (1994).",
         "(1989). Multicultural education. Needham Heights, MA: Allyn & Bacon.",
         "Philosophical Quarterly, 50, 305–319. Priest, G. (2006a). Doubt truth to be a liar.",
+        "Cano, S. J. and J. C. Hobart 2011. The problem with health measurement.",
     ],
 }
 
