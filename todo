@@ -1,3 +1,10 @@
+NEXT (DEC 2019):
+- create haiku from existing material:
+	- given a text, find 5-syl and 7-syl sentences, then randomly combine to create real-haiku-like stuff
+	- can also find single words or bi-grams that are frequent and have 5 or 7 sylls.
+
+- create a story from cases in different papers. E.g., stories about Bob, etc. Combine them to one absurdly amusing and amusingly absurd story.
+
 utils:
 - download all pdfs from a page
 - auto pdf to txt
