@@ -411,7 +411,7 @@ class HaikuParser(TextParser):
 
     def _nsyls(self, text):
         syls = []
-        for word in self.WORD_TK.tokenize(text):
+        for word in self._words(text):
             if word[0].isalpha():
                 syl = self._nsyl_word(word)
                 if not syl:
