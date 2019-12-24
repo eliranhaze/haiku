@@ -462,6 +462,8 @@ IS_TEXT = {
         "Our bodies move regularly, our eyes nearly constantly.",
         "Disjunctive views do not respect the unity of identity.",
         "She is presently pacing up and down in the garden, deep in thought.",
+        "Breaking camp on a windy day, Hiker leaves a campfire burning.",
+        "I don't ever want to make even a single mistake in grading.",
     ],
     0: [
         "[1903]: The Principles of Mathematics, W. W. Norton.",
