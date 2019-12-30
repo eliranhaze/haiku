@@ -289,6 +289,8 @@ class Syllables(object):
         'korsgaard': 2,
         'kripke': 2,
         "kripke's": 2,
+        'laplace': 2,
+        'laplacian': 4,
         "leibniz's": 3,
         "locke's": 1,
         'lockean': 3,
@@ -339,6 +341,7 @@ class Syllables(object):
         'super': 2,
         'hyper': 2,
         'inter': 2,
+        'pseudo': 2,
     }
 
     def __init__(self):
